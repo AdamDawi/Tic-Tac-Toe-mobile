@@ -1,7 +1,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:right="-15dp"
-        android:left="-15dp">
+        android:right="-4dp"
+        android:left="-4dp">
         <rotate
             android:fromDegrees="45"
             android:toDegrees="45"
@@ -11,13 +11,13 @@
                 android:shape="line">
                 <stroke
                     android:color="@color/white"
-                    android:width="18dp"/>
+                    android:width="6dp"/>
             </shape>
         </rotate>
     </item>
     <item
-        android:right="-15dp"
-        android:left="-15dp">
+        android:right="-4dp"
+        android:left="-4dp">
         <rotate
             android:fromDegrees="-45"
             android:toDegrees="-45"
@@ -27,7 +27,7 @@
                 android:shape="line">
                 <stroke
                     android:color="@color/white"
-                    android:width="18dp" />
+                    android:width="6dp" />
             </shape>
         </rotate>
     </item>
