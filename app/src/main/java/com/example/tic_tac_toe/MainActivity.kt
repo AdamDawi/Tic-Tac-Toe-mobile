@@ -1,10 +1,14 @@
 package com.example.tic_tac_toe
 
+import android.app.Activity
+import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -32,7 +36,7 @@ class MainActivity : AppCompatActivity()
         val tvClick = findViewById<TextView>(R.id.tvClick)
         val tvTurn = findViewById<TextView>(R.id.tvTurn)
         val ivTurn = findViewById<ImageView>(R.id.ivTurn)
-        val textAnim = AnimationUtils.loadAnimation(this, R.anim.text_anim)
+        val textAnim = AnimationUtils.loadAnimation(this, R.anim.slide_anim)
 
         tvClick.startAnimation(textAnim)
         tvTurn.startAnimation(textAnim)
@@ -77,8 +81,7 @@ class MainActivity : AppCompatActivity()
         }
         else if(endGame)
         {
-            //TODO: make custom dialog with option to restart game and winning player
-            Toast.makeText(this, "Game ended", Toast.LENGTH_LONG).show()
+            showEndDialog()
         }
 
     }
@@ -118,14 +121,18 @@ class MainActivity : AppCompatActivity()
             setWinningAnimation(iv1, iv4, iv7)
         }
         else if(iv1?.tag !=null && iv2?.tag !=null && iv3?.tag !=null && iv4?.tag !=null && iv5?.tag !=null
-            && iv6?.tag !=null && iv7?.tag !=null && iv8?.tag !=null && iv9?.tag !=null) endGame = true
+            && iv6?.tag !=null && iv7?.tag !=null && iv8?.tag !=null && iv9?.tag !=null)
+        {
+            showEndDialog()
+            endGame = true
+        }
     }
     private fun setWinningAnimation(imageV1 : ImageView?, imageV2 : ImageView?, imageV3 : ImageView?)
     {
         val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
         val colorGreen = Color.parseColor("#BAD507")
 
-        Toast.makeText(this, "Winner ${imageV1?.tag}", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Winner ${(imageV1?.tag).toString().uppercase()}", Toast.LENGTH_LONG).show()
         (imageV1?.parent as FrameLayout).setBackgroundColor(colorGreen)
         (imageV2?.parent as FrameLayout).setBackgroundColor(colorGreen)
         (imageV3?.parent as FrameLayout).setBackgroundColor(colorGreen)
@@ -133,5 +140,30 @@ class MainActivity : AppCompatActivity()
         imageV2.startAnimation(pulse)
         imageV3.startAnimation(pulse)
         endGame = true
+    }
+
+    private fun showEndDialog()
+    {
+        val dialog : Dialog = Dialog(this)
+        dialog.setContentView(R.layout.end_dialog)
+        dialog.setCancelable(false)
+
+        val btnRestart : Button = dialog.findViewById(R.id.btnRestart)
+        btnRestart.setOnClickListener {
+            restartGame()
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun restartGame()
+    {
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+        finish()
+//        endGame=false
+//        turn="o"
+//        setDefaultView()
     }
 }
