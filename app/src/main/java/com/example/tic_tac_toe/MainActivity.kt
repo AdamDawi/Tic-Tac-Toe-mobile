@@ -1,6 +1,6 @@
 package com.example.tic_tac_toe
 
-import android.app.Activity
+import android.app.ActivityOptions
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -83,7 +83,6 @@ class MainActivity : AppCompatActivity()
         {
             showEndDialog()
         }
-
     }
 
     private fun checkIfWin()
@@ -144,7 +143,7 @@ class MainActivity : AppCompatActivity()
 
     private fun showEndDialog()
     {
-        val dialog : Dialog = Dialog(this)
+        val dialog = Dialog(this)
         dialog.setContentView(R.layout.end_dialog)
         dialog.setCancelable(false)
 
@@ -153,17 +152,15 @@ class MainActivity : AppCompatActivity()
             restartGame()
             dialog.dismiss()
         }
-
         dialog.show()
     }
 
     private fun restartGame()
     {
         val intent = Intent(this,MainActivity::class.java)
-        startActivity(intent)
+        val options = ActivityOptions.makeCustomAnimation(this, R.anim.fade_in_anim, R.anim.fade_out_anim)
+        startActivity(intent, options.toBundle())
+
         finish()
-//        endGame=false
-//        turn="o"
-//        setDefaultView()
     }
 }
