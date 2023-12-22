@@ -25,7 +25,7 @@ To run the application, clone the repository to your local machine, and then ope
 
 ```bash
 git clone https://github.com/AdamDawi/Tic-Tac-Toe-mobile
-cd tic-tac-toe
+cd Tic-Tac-Toe-mobile
 # Run the project in your IDE
 ```
 
