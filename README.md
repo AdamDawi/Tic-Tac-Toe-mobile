@@ -1,5 +1,4 @@
 # Tic-Tac-Toe-mobile
-# Tic Tac Toe - Tic-Tac-Toe Game
 
 ## Description
 
